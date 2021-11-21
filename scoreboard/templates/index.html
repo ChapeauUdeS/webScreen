@@ -1,0 +1,174 @@
+{% load static %}<!doctype html><!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Scoreboard!</title>
+        <script>
+            function sendCommand(param) {
+                $.ajax({
+                    type:"GET",
+                    url:'http://192.168.0.14:3000/ajax/sendCommand/' + param,
+                    dataType: 'jsonp',
+                    //can send multipledata like {data1:var1,data2:var2,data3:var3
+                    //can use dataType:'text/html' or 'json' if response type expected
+                    success:function(responsedata){
+                        return 0
+                    }
+                 })
+            }
+        </script>
+    </head>
+        <h1>Timer</h1>
+         <input type="text" id="timerInput"></input>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/app.css' %}">
+        {% block stylesheet %}{% endblock %}
+         <div>
+            <input type="button" value="Set" id="setButton">
+            <input type="button" value="Start" id="startButton">
+            <input type="button" value="Reset" id="resetButton">
+         </div>
+        <h1>Score</h1>
+        <input type="button" value="Zero all" id="zeroButton">
+        <div>Custom number
+
+        <input type="text" id="customInput"></input>
+        </div>
+        <h4>Team 1</h4>
+        <div>
+            <label>P1</label>
+            <input type="text">
+            <input type="button" value="____+10____" id="pp1">
+            <input type="button" value="____-5_____" id="mp1">
+            <input type="button" value="Custom" id="cp1">
+        </div>
+        <br>
+        <div>
+            <label>P2</label>
+            <input type="text">
+            <input type="button" value="____+10____" id="pp2">
+            <input type="button" value="____-5_____" id="mp2">
+            <input type="button" value="Custom" id="cp2">
+        </div>
+        <br>
+        <div>
+            <label>P3</label>
+            <input type="text">
+            <input type="button" value="____+10____" id="pp3">
+            <input type="button" value="____-5_____" id="mp3">
+            <input type="button" value="Custom" id="cp3">
+        </div>
+        <br>
+        <div>
+            <label>P4</label>
+            <input type="text">
+            <input type="button" value="____+10____" id="pp4">
+            <input type="button" value="____-5_____" id="mp4">
+            <input type="button" value="Custom" id="cp4">
+        </div>
+        <h4>Team 2</h4>
+        <div>
+            <label>P5</label>
+            <input type="text">
+            <input type="button" value="____+10____" id="pp5">
+            <input type="button" value="____-5_____" id="mp5">
+            <input type="button" value="Custom" id="cp5">
+        </div>
+        <br>
+        <div>
+            <label>P6</label>
+            <input type="text">
+            <input type="button" value="____+10____" id="pp6">
+            <input type="button" value="____-5_____" id="mp6">
+            <input type="button" value="Custom" id="cp6">
+        </div>
+        <br>
+        <div>
+            <label>P7</label>
+            <input type="text">
+            <input type="button" value="____+10____" id="pp7">
+            <input type="button" value="____-5_____" id="mp7">
+            <input type="button" value="Custom" id="cp7">
+        </div>
+        <br>
+        <div>
+            <label>P8</label>
+            <input type="text">
+            <input type="button" value="____+10____" id="pp8">
+            <input type="button" value="____-5_____" id="mp8">
+            <input type="button" value="Custom" id="cp8">
+        </div>
+        <h1>Animation</h1>
+        <input type="button" value="genie en herbe" id="GEH_animation">
+        <input type="button" value="diable" id="diable">
+        <input type="button" value="Scoreboard" id="GEH_score">
+        <input type="button" value="BlackScreen" id="blackButton">
+        <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+        <script src="{% static 'js/app.js' %}"></script>
+        {% block javascript %}
+        <script>
+            $("#setButton").click(function() {
+                console.log($("#timerInput").val())
+                sendCommand("t"+$("#timerInput").val())
+            })
+            $("#startButton").click(function() {sendCommand("s")})
+            $("#resetButton").click(function() {sendCommand("h")})
+
+            $("#GEH_animation").click(function() {sendCommand("0")})
+            $("#diable").click(function() {sendCommand("x")})
+            $("#GEH_score").click(function() {sendCommand("9")})
+            $("#zeroButton").click(function() {sendCommand("z")})
+            $("#blackButton").click(function() {sendCommand("b")})
+
+            $("#pp1").click(function() {sendCommand("1pr")})
+            $("#mp1").click(function() {sendCommand("1mr")})
+            $("#cp1").click(function() {
+                sendCommand("1c"+$("#customInput").val()+"r")
+            })
+
+            $("#pp2").click(function() {sendCommand("2pr")})
+            $("#mp2").click(function() {sendCommand("2mr")})
+            $("#cp2").click(function() {
+                sendCommand("2c"+$("#customInput").val()+"r")
+            })
+
+            $("#pp3").click(function() {sendCommand("3pr")})
+            $("#mp3").click(function() {sendCommand("3mr")})
+            $("#cp3").click(function() {
+                sendCommand("3c"+$("#customInput").val()+"r")
+            })
+
+            $("#pp4").click(function() {sendCommand("4pr")})
+            $("#mp4").click(function() {sendCommand("4mr")})
+            $("#cp4").click(function() {
+                sendCommand("4c"+$("#customInput").val()+"r")
+            })
+
+            $("#pp5").click(function() {sendCommand("5pr")})
+            $("#mp5").click(function() {sendCommand("5mr")})
+            $("#cp5").click(function() {
+                sendCommand("5c"+$("#customInput").val()+"r")
+            })
+
+            $("#pp6").click(function() {sendCommand("6pr")})
+            $("#mp6").click(function() {sendCommand("6mr")})
+            $("#cp6").click(function() {
+                sendCommand("6c"+$("#customInput").val()+"r")
+            })
+
+            $("#pp7").click(function() {sendCommand("7pr")})
+            $("#mp7").click(function() {sendCommand("7mr")})
+            $("#cp7").click(function() {
+                sendCommand("7c"+$("#customInput").val()+"r")
+            })
+
+            $("#pp8").click(function() {sendCommand("8pr")})
+            $("#mp8").click(function() {sendCommand("8mr")})
+            $("#cp8").click(function() {
+                sendCommand("8c"+$("#customInput").val()+"r")
+            })
+        </script>
+        {% endblock %}
+    </body>
+</html>
+
+
